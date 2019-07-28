@@ -1,0 +1,36 @@
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src=" https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+    <script src="/static/js/liff.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+
+  <body>
+    <!-- Title -->
+    <h2>Temperature monitor</h2>
+    <hr />
+    <p>
+      <img id="loading-animation" class="" src="/static/images/loading.gif" height="14px" />
+      <span id="status" class="inactive">Device disconnected</span>
+    </p>
+    <hr />
+    <div id="controls" class="hidden">
+      <!-- Device Info Table -->
+      <table class="device-info-table">
+        <tr>
+          <th class="device-info-cell device-info-key">Name</th>
+          <td class="device-info-cell device-info-val" id="device-name"></td>
+        </tr>
+        <tr>
+          <th class="device-info-cell device-info-key">temperature</th>
+          <td class="device-info-cell device-info-val" id="heart-rate">0</td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+  </body>
+
+</html>

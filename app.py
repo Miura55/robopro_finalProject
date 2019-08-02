@@ -38,9 +38,9 @@ class User(db.Model):
     temperature = db.Column(db.Integer)
     save_date = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
-    def __init__(self, username, heart_rate, save_date):
+    def __init__(self, username, temp, save_date):
         self.username = username
-        self.temperature = heart_rate
+        self.temperature = temp
         self.save_date = save_date
 
     def __repr__(self):

@@ -86,7 +86,7 @@ def handle_things_event(event):
     message = "値をゲット：" + str(heart_rate)
 
     print("Got data: " + str(heart_rate))
-    line_bot_api.reply_message(event.replyToken,
+    line_bot_api.reply_message(event["replyToken"],
             TextSendMessage(text=message))
     # if heart_rate > 0:
     #     user = User(username, heart_rate, save_date)

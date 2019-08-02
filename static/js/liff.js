@@ -199,7 +199,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
     characteristic.startNotifications().then(() => {
         characteristic.addEventListener('characteristicvaluechanged', e => {
             const val = (new Uint8Array(e.target.value.buffer))[0];
-            const el = document.getElementById("heart-rate");
+            const el = document.getElementById("temperature");
             el.innerText = val;
         });
     }).catch(error => {

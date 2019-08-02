@@ -197,7 +197,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
     // (Get notified when button state changes)
     characteristic.startNotifications().then(() => {
         characteristic.addEventListener('characteristicvaluechanged', e => {
-            const val = (new Uint8Array(e.target.value.buffer));
+            const val = (new Uint8Array(e.target.value.buffer))[0];
             const el = document.getElementById("temp");
             el.innerText = val;
         });

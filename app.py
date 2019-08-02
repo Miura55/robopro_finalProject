@@ -81,17 +81,15 @@ def handle_things_event(event):
         return
 
     username = event["source"]["userId"]
-    heart_rate = int.from_bytes(base64.b64decode(event["things"]["result"]["bleNotificationPayload"]), 'little')
+    temperature = int.from_bytes(base64.b64decode(event["things"]["result"]["bleNotificationPayload"]), 'little')
     save_date = datetime.now()
-    message = "値をゲット：" + str(heart_rate)
+    message = "値をゲット：" + str(temperature)
+    print("Got data: " + str(temperature))
 
-    print("Got data: " + str(heart_rate))
-    line_bot_api.reply_message(event["replyToken"],
-            TextSendMessage(text=message))
-    # if heart_rate > 0:
-    #     user = User(username, heart_rate, save_date)
-    #     db.session.add(user)
-    #     db.session.commit()
+    if heart_rate > 0:
+        user = User(username, temperature, save_date)
+        db.session.add(user)
+        db.session.commit()
 
 def handle_message(event):
     if event.type == "message" and event.message.type == "text":
@@ -99,7 +97,7 @@ def handle_message(event):
             before_10s = datetime.now() - dt.timedelta(seconds=10)
             userId = event.source.sender_id
             users = db.session.query(User).filter(User.save_date>=before_10s).filter(User.username==userId).all()
-            list_heart = [int(data.heart_rate) for data in users]
+            list_heart = [int(data.temperature) for data in users]
             try:
                 av_heart = sum(list_heart) / len(list_heart)
                 message = "現在の温度: " + str(av_heart)

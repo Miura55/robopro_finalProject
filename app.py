@@ -40,7 +40,7 @@ class User(db.Model):
 
     def __init__(self, username, heart_rate, save_date):
         self.username = username
-        self.heart_rate = heart_rate
+        self.temperature = heart_rate
         self.save_date = save_date
 
     def __repr__(self):

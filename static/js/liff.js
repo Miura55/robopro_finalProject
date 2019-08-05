@@ -248,7 +248,7 @@ function plot_graph(value){
    setInterval(function () {
        chart.push(
            [
-               {time: Date.now() / 1000, y: $("#temp")[0].value,}
+               {time: Date.now() / 1000, y: $("#temp"),}
            ],
        );
    }, 1000);

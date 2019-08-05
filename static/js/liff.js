@@ -210,17 +210,11 @@ function liffGetButtonStateCharacteristic(characteristic) {
 function plot_graph(value){
   // データ範囲 左右別
    var leftRange = [-20, 40];
-   var rightRange = [-5, 105];
    // 初期データ
    var data = [
            {
                label: "layer1",
                range: leftRange,
-               values: [],
-           },
-           {
-               label: "layer2",
-               range: rightRange,
                values: [],
            }
        ]
@@ -229,17 +223,16 @@ function plot_graph(value){
    let chart = $('#myChart').epoch({
        type: 'time.line',                         //グラフの種類
        data: data,                                  //初期値
-       axes: ['bottom', 'left', 'right'],       //利用軸の選択
+       axes: ['bottom', 'left'],       //利用軸の選択
        fps: 24,                                     //フレームレート
        range: {                                     //軸の範囲
-           left: leftRange,
-           right: rightRange
+           left: leftRange
        },
        queueSize: 1,   // キューサイズ ※push時、キューからあふれたデータは破棄される
        windowSize: 20, // 表示から見切れるまでいくつデータを表示させるか
 
        // 目盛りの設定。 timeは間隔秒数、他は目盛りの数
-       ticks: {time: 5, right: 5, left: 5},
+       ticks: {time: 5, left: 5},
        // 目盛りの書式
        tickFormats: {
            bottom: function (d) {
@@ -247,11 +240,7 @@ function plot_graph(value){
            },
            left: function (d) {
                return (d).toFixed(1) + " ℃";
-           },
-           right: function (d) {
-               return (d).toFixed(0) + " %";
            }
-
        }
    });
 
@@ -259,8 +248,7 @@ function plot_graph(value){
    setInterval(function () {
        chart.push(
            [
-               {time: Date.now() / 1000, y: $("#temp")[0].value,},
-               {time: Date.now() / 1000, y: $("#humidity")[0].value,},
+               {time: Date.now() / 1000, y: $("#temp")[0].value,}
            ],
        );
    }, 1000);

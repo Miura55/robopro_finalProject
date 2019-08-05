@@ -200,7 +200,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
             const val = (new Uint8Array(e.target.value.buffer))[0];
             const el = document.getElementById("temp");
             el.innerText = val;
-            plot_graph();
+            plot_graph(val);
         });
     }).catch(error => {
         uiStatusError(makeErrorMsg(error), false);
@@ -226,7 +226,7 @@ function plot_graph(value){
        axes: ['bottom', 'left'],       //利用軸の選択
        fps: 24,                                     //フレームレート
        range: {                                     //軸の範囲
-           left: leftRange
+           left: leftRange,
        },
        queueSize: 1,   // キューサイズ ※push時、キューからあふれたデータは破棄される
        windowSize: 20, // 表示から見切れるまでいくつデータを表示させるか
@@ -248,7 +248,7 @@ function plot_graph(value){
    setInterval(function () {
        chart.push(
            [
-               {time: Date.now() / 1000, y: $("#temp"),}
+               {time: Date.now() / 1000, y: value,},
            ],
        );
    }, 1000);

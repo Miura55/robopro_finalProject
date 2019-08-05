@@ -20,3 +20,8 @@ heroku上で実行している。```requirements.txt```にインストールす�
 以下のQRコードを使用し、連携画面を立ち上げて規約に同意した後、表示されているデバイス名をタップして接続を行う。
 
 ![qrcode_201908060804](https://user-images.githubusercontent.com/24681988/62500367-fe836900-b820-11e9-8ee8-4123c1143cdd.png)
+
+## 実行動画
+下記のリンクの動画で実際の動作を示す。
+
+https://www.youtube.com/watch?v=p7xShuX-45Y

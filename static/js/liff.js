@@ -207,7 +207,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
     });
 }
 
-function plot_graph(){
+function plot_graph(value){
   // データ範囲 左右別
    var leftRange = [-20, 40];
    var rightRange = [-5, 105];
@@ -259,7 +259,7 @@ function plot_graph(){
    setInterval(function () {
        chart.push(
            [
-               {time: Date.now() / 1000, y: $("#temperature")[0].value,},
+               {time: Date.now() / 1000, y: $("#temp")[0].value,},
                {time: Date.now() / 1000, y: $("#humidity")[0].value,},
            ],
        );

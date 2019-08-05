@@ -98,10 +98,10 @@ p {
 
 /* graph style */
 /* 線の色の変更 */
-  .epoch .category1 .line {
+.epoch .category1 .line {
     stroke: #dc3545;
-  }
+}
 
-  .epoch .category2 .line {
+.epoch .category2 .line {
     stroke: #17a2b8;
-  }
+}

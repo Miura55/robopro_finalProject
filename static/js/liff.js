@@ -200,56 +200,33 @@ function liffGetButtonStateCharacteristic(characteristic) {
             const val = (new Uint8Array(e.target.value.buffer))[0];
             const el = document.getElementById("temp");
             el.innerText = val;
-            plot_graph(val);
         });
     }).catch(error => {
         uiStatusError(makeErrorMsg(error), false);
     });
 }
 
-function plot_graph(value){
-  // データ範囲 左右別
-   var leftRange = [-20, 40];
-   // 初期データ
-   var data = [
-           {
-               label: "layer1",
-               range: leftRange,
-               values: [],
-           }
-       ]
-   ;
-   // 初期化
-   let chart = $('#myChart').epoch({
-       type: 'time.line',                         //グラフの種類
-       data: data,                                  //初期値
-       axes: ['bottom', 'left'],       //利用軸の選択
-       fps: 24,                                     //フレームレート
-       range: {                                     //軸の範囲
-           left: leftRange,
-       },
-       queueSize: 1,   // キューサイズ ※push時、キューからあふれたデータは破棄される
-       windowSize: 20, // 表示から見切れるまでいくつデータを表示させるか
-
-       // 目盛りの設定。 timeは間隔秒数、他は目盛りの数
-       ticks: {time: 5, left: 5},
-       // 目盛りの書式
-       tickFormats: {
-           bottom: function (d) {
-               return moment(d * 1000).format('HH:mm:ss');
-           },
-           left: function (d) {
-               return (d).toFixed(1) + " ℃";
-           }
-       }
-   });
-
-   // リアルタイム表示処理
-   setInterval(function () {
-       chart.push(
-           [
-               {time: Date.now() / 1000, y: value,},
-           ],
-       );
-   }, 1000);
+// plot graph
+function getData() {
+    return Math.random();
 }
+
+Plotly.plot('chart',[{
+    y:[getData()],
+    type:'line'
+}]);
+
+var cnt = 0;
+
+setInterval(function(){
+
+    Plotly.extendTraces('chart',{ y:[[getData()]]}, [0]);
+    cnt++;
+    if(cnt > 100) {
+        Plotly.relayout('chart',{
+            xaxis: {
+                range: [cnt-100,cnt]
+            }
+        });
+    }
+},15);

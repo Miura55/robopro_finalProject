@@ -210,11 +210,17 @@ function liffGetButtonStateCharacteristic(characteristic) {
 function plot_graph(temp_val){
   // データ範囲 左右別
     var leftRange = [-20, 40];
+    var rightRange = [-5, 105];
     // 初期データ
     var data = [
             {
                 label: "layer1",
                 range: leftRange,
+                values: [],
+            },
+            {
+                label: "layer2",
+                range: rightRange,
                 values: [],
             }
         ]
@@ -227,6 +233,7 @@ function plot_graph(temp_val){
         fps: 24,                                     //フレームレート
         range: {                                     //軸の範囲
             left: leftRange,
+            right: rightRange
         },
         queueSize: 1,   // キューサイズ ※push時、キューからあふれたデータは破棄される
         windowSize: 20, // 表示から見切れるまでいくつデータを表示させるか
@@ -241,6 +248,10 @@ function plot_graph(temp_val){
             left: function (d) {
                 return (d).toFixed(1) + " ℃";
             },
+            right: function (d) {
+                return (d).toFixed(0) + " %";
+            }
+
         }
     });
 
@@ -249,6 +260,7 @@ function plot_graph(temp_val){
         chart.push(
             [
                 {time: Date.now() / 1000, y: $("#temperature")[0].value,},
+                {time: Date.now() / 1000, y: $("#humidity")[0].value,},
             ],
         );
     }, 1000);

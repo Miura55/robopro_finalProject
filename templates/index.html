@@ -49,6 +49,7 @@
             <div class="mx-auto">
                 <p>
                     気温：<img width="40" height="20" class="bg-danger">　
+                    湿度：<img width="40" height="20" class="bg-info">
                 </p>
             </div>
             <div id="myChart" class="epoch" style="width: 100%; height: 200px">
@@ -60,6 +61,10 @@
                     <div class="form-group">
                         <label for="temperature">気温（－１５℃～３５℃）</label>
                         <input id="temperature" type="range" class="form-control-range" min="-15" max="35" value="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="humidity">湿度（０％～１００％）</label>
+                        <input id="humidity" type="range" class="form-control-range" min="0" max="100">
                     </div>
                 </form>
             </div>

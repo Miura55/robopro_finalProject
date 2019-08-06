@@ -16,27 +16,30 @@ window.onload = () => {
     initializeApp();
 };
 
-// --------------- //
-// Make graph      //
-// --------------- // 
+// -------------- //
+// chart function //
+// -------------- //
+google.charts.load('current', {'packages':['gauge']});
+google.charts.setOnLoadCallback(drawChart);
 
-var ctx = document.getElementById("ChartDemo").getContext('2d');
-var ChartDemo = new Chart(ctx, {
-   type: 'line',
-   data: {
-      labels: ["Item1", "Item2", "Item3", "Item4", "Item5", "Item6", "Item7"],
-      datasets: [
-      {
-         label: "Chart-1",
-         borderColor: 'rgb(255, 0, 0)',
-         data: [20, 26, 12, 43, 33, 21, 29],
-      },
-      ]
-   },
-   options: {
-      responsive: true,
-   }
-});
+function drawChart() {
+
+  var data = google.visualization.arrayToDataTable([ 
+  ['Label', 'Value'], ['Temp', 40], ]);
+  var options = { 
+  width: 800, height: 240, redFrom: 35, redTo: 40, yellowFrom:30, yellowTo: 35,
+  majorTicks: ["-32","-20","-10","0","10","20","30","40"], 
+  minorTicks: 5, min: -32, max: 40 };
+
+  var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+  chart.draw(data, options);
+
+  setInterval(function() {
+    data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+    chart.draw(data, options);
+  }, 13000);
+}
 
 // ------------ //
 // UI functions //

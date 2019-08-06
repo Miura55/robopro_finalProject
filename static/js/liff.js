@@ -19,27 +19,6 @@ window.onload = () => {
 // -------------- //
 // chart function //
 // -------------- //
-google.charts.load('current', {'packages':['gauge']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-
-  var data = google.visualization.arrayToDataTable([ 
-  ['Label', 'Value'], ['Temp', 40], ]);
-  var options = { 
-  width: 800, height: 240, redFrom: 35, redTo: 40, yellowFrom:30, yellowTo: 35,
-  majorTicks: ["-32","-20","-10","0","10","20","30","40"], 
-  minorTicks: 5, min: -32, max: 40 };
-
-  var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-
-  chart.draw(data, options);
-
-  setInterval(function() {
-    data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-    chart.draw(data, options);
-  }, 13000);
-}
 
 // ------------ //
 // UI functions //

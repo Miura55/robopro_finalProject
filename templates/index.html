@@ -36,7 +36,7 @@
       </table>
       <hr />
       <canvas id="canvas-id"></canvas>
-      <button id="btn-led-toggle" class="btn btn-led-toggle" onclick="animateGauges()">Animate</button>
+      <button id="btn-led-toggle" onclick="animateGauges()">Animate</button>
 
       <script>
           var gauge = new RadialGauge({
@@ -124,8 +124,9 @@
           function animateGauges() {
               document.gauges.forEach(function(gauge) {
                   timers.push(setInterval(function() {
-                      // gauge.value = Number(document.getElementById("temp").value);
-                      gauge.value = Math.random();
+                      gauge.value = Math.random() *
+                          (gauge.options.maxValue - gauge.options.minValue) +
+                          gauge.options.minValue;
                   }, gauge.animation.duration + 50));
               });
           }

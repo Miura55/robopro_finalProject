@@ -124,7 +124,8 @@
           function animateGauges() {
               document.gauges.forEach(function(gauge) {
                   timers.push(setInterval(function() {
-                      gauge.value = Number(document.getElementById("temp").value);
+                      // gauge.value = Number(document.getElementById("temp").value);
+                      gauge.value = Math.random();
                   }, gauge.animation.duration + 50));
               });
           }

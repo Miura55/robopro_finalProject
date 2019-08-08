@@ -114,16 +114,11 @@
 
           }).draw();
 
+
           // gauge.value = 20;
-          // gauge.update();
-          var timers = [];
-          document.gauges.forEach(function(gauge) {
-              timers.push(setInterval(function() {
-                  gauge.value = parseInt(document.getElementById("temp")) *
-                      (gauge.options.maxValue - gauge.options.minValue) +
-                      gauge.options.minValue;
-              }, gauge.animation.duration + 50));
-          });
+          gauge.value = parseInt(document.getElementById("temp"));
+          gauge.update();
+
       </script>
 
     </div>

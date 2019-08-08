@@ -19,6 +19,17 @@ window.onload = () => {
 // -------------- //
 // chart function //
 // -------------- //
+var timers = [];
+
+function animateGauges() {
+    document.gauges.forEach(function(gauge) {
+        timers.push(setInterval(function() {
+            gauge.value = Math.random() *
+                (gauge.options.maxValue - gauge.options.minValue) +
+                gauge.options.minValue;
+        }, gauge.animation.duration + 50));
+    });
+}
 
 // ------------ //
 // UI functions //
@@ -203,6 +214,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
             const val = (new Uint8Array(e.target.value.buffer))[0];
             const el = document.getElementById("temp");
             el.innerText = val;
+            animateGauges();
         });
     }).catch(error => {
         uiStatusError(makeErrorMsg(error), false);

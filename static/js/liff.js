@@ -14,12 +14,10 @@ const PSDI_CHARACTERISTIC_UUID  = '26E2B12B-85F0-4F3F-9FDD-91D114270E6E';
 
 window.onload = () => {
     initializeApp();
+    initVConsole();
 };
 
-// -------------- //
-// chart function //
-// -------------- //
-var timers = [];
+
 // ------------ //
 // UI functions //
 // ------------ //
@@ -203,9 +201,23 @@ function liffGetButtonStateCharacteristic(characteristic) {
             const val = (new Uint8Array(e.target.value.buffer))[0];
             const el = document.getElementById("temp");
             el.innerText = val;
-            animateGauges();
+            // animateGauges();
         });
     }).catch(error => {
         uiStatusError(makeErrorMsg(error), false);
+    });
+}
+
+// Initialize vConsole
+function initVConsole() {
+    window.vConsole = new window.VConsole({
+        defaultPlugins: ['system', 'network', 'element', 'storage'],
+        maxLogNumber: 1000,
+        onReady: function() {
+            console.log('vConsole is ready.');
+        },
+        onClearLog: function() {
+            console.log('on clearLog');
+        }
     });
 }
